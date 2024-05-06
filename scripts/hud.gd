@@ -1,13 +1,20 @@
 extends Control
 
 @onready var confMsg: Label = $Confirmation
+var bonusCanDeg: bool = false
 
 func _ready():
 	updateUI()
 	timeUpdate()
 
 func updateUI():
-	$MoneyLabel.text = "balance: %s\n%s p/s" % [Globals.balance, Globals.earnings]
+	var bonus = ""
+	$BonusLabel.text = ""
+	if Globals.bonusEarns > 0:
+		bonus = "+ %s" % Globals.bonusEarns
+	$MoneyLabel.text = "balance: %s\n%s p/s %s" % [Globals.balance, Globals.earnings, bonus]
+	if Globals.bonusEarns > 0:
+		$BonusLabel.text = "Bonus: %s" % str(Globals.bonusTimeLeft+1)
 
 func _process(delta):
 	#Fix/Refactor
@@ -38,6 +45,8 @@ func timeUpdate():
 
 func _on_timer_timeout():
 	Globals.sec += 1
+	if Globals.bonusEarns > 0:
+		Globals.bonusTimeLeft -= 1
 	$Timer.start()
 
 func _on_settings_pressed():

@@ -41,7 +41,7 @@ func _process(delta):
 		$CanvasLayer/HUD/SettingsMenu.visible = !$CanvasLayer/HUD/SettingsMenu.visible
 	if canEarn:
 		canEarn = false
-		Globals.balance += snapped(Globals.earnings, 0.01)
+		Globals.balance += snapped(Globals.earnings, 0.01) + Globals.bonusEarns
 		updateUI()
 		timer.start()
 

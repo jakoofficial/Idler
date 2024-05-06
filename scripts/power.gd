@@ -1,5 +1,5 @@
 extends Area2D
 class_name powerBase
 
-@export var multiplier: float = 1.5
-@export var time: float = 10
+@export var extra: float = 1.5
+@export var timeLeft: float = 10.0

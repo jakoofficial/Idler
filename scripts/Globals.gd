@@ -3,6 +3,7 @@ extends Node
 var balance: float = 4.5
 var earnings: float = 0.0
 var bonusEarns: float = 0.0
+var bonusTimeLeft: float = 0.0
 
 var hour: int = 0
 var min: int = 0
