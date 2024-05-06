@@ -1,0 +1,88 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1xl5tju2ah25"]
+
+[ext_resource type="Script" path="res://scripts/hud.gd" id="1_4enbw"]
+[ext_resource type="PackedScene" uid="uid://dxx4yd2hu7t1s" path="res://assets/item_button.tscn" id="2_y0meq"]
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4enbw")
+
+[node name="MoneyLabel" type="Label" parent="."]
+layout_mode = 1
+offset_left = 12.0
+offset_top = 7.0
+offset_right = 204.0
+offset_bottom = 71.0
+text = "Test"
+
+[node name="UpgradeList" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="SeedBTN" parent="UpgradeList" instance=ExtResource("2_y0meq")]
+layout_mode = 2
+itemNAME = "Seed"
+prodBASE = 0.5
+
+[node name="SproutBTN" parent="UpgradeList" instance=ExtResource("2_y0meq")]
+layout_mode = 2
+itemNAME = "Sprout"
+costBASE = 42.0
+prodBASE = 1.3
+rateGROWTH = 1.16
+
+[node name="SaplingBTN" parent="UpgradeList" instance=ExtResource("2_y0meq")]
+layout_mode = 2
+itemNAME = "Sapling"
+costBASE = 465.0
+prodBASE = 3.3
+rateGROWTH = 1.27
+
+[node name="YoungBTN" parent="UpgradeList" instance=ExtResource("2_y0meq")]
+layout_mode = 2
+itemNAME = "Young"
+costBASE = 5029.0
+prodBASE = 8.3
+rateGROWTH = 1.39
+
+[node name="MatureBTN" parent="UpgradeList" instance=ExtResource("2_y0meq")]
+layout_mode = 2
+itemNAME = "Mature"
+costBASE = 54389.0
+prodBASE = 20.8
+rateGROWTH = 1.52
+
+[node name="FruitBTN" parent="UpgradeList" instance=ExtResource("2_y0meq")]
+layout_mode = 2
+itemNAME = "Fruit"
+costBASE = 588217.0
+prodBASE = 52.0
+rateGROWTH = 1.66
+
+[node name="TimePassed" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Time"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

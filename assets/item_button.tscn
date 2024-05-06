@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxx4yd2hu7t1s"]
+
+[ext_resource type="Script" path="res://scripts/ItemButton.gd" id="1_xmigk"]
+[ext_resource type="Script" path="res://scripts/MultiUpgrade.gd" id="2_n5v2l"]
+
+[node name="ItemButton" type="Button"]
+custom_minimum_size = Vector2(200, 50)
+offset_left = 64.0
+offset_right = 264.0
+offset_bottom = 50.0
+text = "Test"
+script = ExtResource("1_xmigk")
+
+[node name="MultiUpgrade" type="Button" parent="."]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 1
+offset_left = -53.0
+offset_top = 6.0
+offset_right = -13.0
+offset_bottom = 46.0
+text = "+"
+script = ExtResource("2_n5v2l")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="pressed" from="MultiUpgrade" to="." method="multiUpgrade"]
