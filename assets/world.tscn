@@ -93,7 +93,6 @@ script = ExtResource("1_uxun2")
 script = SubResource("GDScript_o35ey")
 
 [node name="AutoSave" type="Timer" parent="."]
-autostart = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="AutoSave" to="." method="_on_auto_save_timeout"]

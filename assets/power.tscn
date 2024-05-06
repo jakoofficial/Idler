@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://dal44wo1a2cpm"]
+
+[node name="Power" type="Area2D"]

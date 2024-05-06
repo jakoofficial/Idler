@@ -5,6 +5,7 @@ var canEarn: bool = false
 @onready var autoSaveTimer: Timer = $AutoSave
 @onready var upgradeList = $"CanvasLayer/HUD/UpgradeList"
 var upgradeArrList: Array
+var savepath = "user://data.save"
 
 @export var timeSave: float = 5.0
 
@@ -14,7 +15,10 @@ var upgradeArrList: Array
 #For saving
 var dc: Dictionary
 
-func rebirth():
+func rebirth(reset:bool = false):
+	if reset:
+		Globals.hour = 0; Globals.min = 0; Globals.sec = 0
+		updateUI()
 	Globals.balance = 4.5
 	Globals.earnings = 0
 	var list = upgradeList.get_children()
@@ -29,6 +33,7 @@ func _ready():
 	_loadData()
 	updateUI()
 	timeSave *= 60
+	autoSaveTimer.start(timeSave)
 
 func _process(delta):
 	if Input.is_action_just_released("save"):
@@ -42,7 +47,6 @@ func _process(delta):
 		timer.start()
 
 func _saveData():
-	var path = "user://data.save"
 	
 	dc["gm"] = {"balance":Globals.balance,"earnings":Globals.earnings}
 	dc["time"] = {"hour": Globals.hour, "minutes": Globals.min, "seconds": Globals.sec}
@@ -50,18 +54,17 @@ func _saveData():
 		dc[x.name] = x.call("save")
 	
 	var json_string = JSON.stringify(dc)
-	var save = FileAccess.open(path, FileAccess.WRITE)
+	var save = FileAccess.open(savepath, FileAccess.WRITE)
 	save.store_line(json_string)
 	save.close()
 	dc.clear()
 	$CanvasLayer/HUD.confirmation("Game saved")
 
 func _loadData():
-	var path = "user://data.save"
-	if not FileAccess.file_exists(path):
+	if not FileAccess.file_exists(savepath):
 		return
 	
-	var data = FileAccess.open(path, FileAccess.READ)
+	var data = FileAccess.open(savepath, FileAccess.READ)
 	while data.get_position() < data.get_length():
 		var json_string = data.get_line()
 		var json = JSON.new()

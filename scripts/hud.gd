@@ -52,8 +52,9 @@ func _on_save_game_pressed():
 	confirmation("Game Saved")
 #remove the current save file
 func _on_delete_save_pressed():
-	confirmation("Not implemented yet")
-	pass # Replace with function body.
+	DirAccess.remove_absolute(get_tree().current_scene.savepath)
+	confirmation("File Deleted")
+	get_tree().current_scene.rebirth(true)
 
 #Save and exit
 func _on_exitn_save_pressed():
