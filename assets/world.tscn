@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dikm0bndt71hb"]
+[gd_scene load_steps=5 format=3 uid="uid://dikm0bndt71hb"]
 
 [ext_resource type="PackedScene" uid="uid://b1xl5tju2ah25" path="res://assets/UI/hud.tscn" id="1_mgd47"]
 [ext_resource type="Script" path="res://scripts/gm.gd" id="1_uxun2"]
+[ext_resource type="PackedScene" uid="uid://dal44wo1a2cpm" path="res://assets/power.tscn" id="3_kphml"]
 
 [sub_resource type="GDScript" id="GDScript_o35ey"]
 script/source = "@tool
@@ -86,6 +87,7 @@ script = ExtResource("1_uxun2")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HUD" parent="CanvasLayer" groups=["KSave"] instance=ExtResource("1_mgd47")]
+mouse_filter = 1
 
 [node name="Timer" type="Timer" parent="."]
 
@@ -93,6 +95,9 @@ script = ExtResource("1_uxun2")
 script = SubResource("GDScript_o35ey")
 
 [node name="AutoSave" type="Timer" parent="."]
+
+[node name="Power" parent="." instance=ExtResource("3_kphml")]
+position = Vector2(424, 248)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="AutoSave" to="." method="_on_auto_save_timeout"]

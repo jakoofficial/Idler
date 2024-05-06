@@ -25,7 +25,6 @@ func rebirth(reset:bool = false):
 	for x in list:
 		x.reset()
 		x._updateBtnUI()
-		print(x.multiplier)
 	updateEarnings()
 
 func _ready():

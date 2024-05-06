@@ -1,3 +1,23 @@
-[gd_scene format=3 uid="uid://dal44wo1a2cpm"]
+[gd_scene load_steps=4 format=3 uid="uid://dal44wo1a2cpm"]
+
+[ext_resource type="Script" path="res://scripts/powerUp.gd" id="1_7ffit"]
+[ext_resource type="Texture2D" uid="uid://j4fw32d6jo41" path="res://icon.svg" id="1_pfmka"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4y5id"]
+radius = 24.0
 
 [node name="Power" type="Area2D"]
+script = ExtResource("1_7ffit")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.375, 0.375)
+texture = ExtResource("1_pfmka")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4y5id")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
