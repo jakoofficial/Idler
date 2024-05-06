@@ -9,9 +9,7 @@ var savepath = "user://data.save"
 
 @export var timeSave: float = 5.0
 
-######TODO########
-#TODO Add autosave
-#
+@onready var powerup: PackedScene = preload("res://assets/power.tscn")
 #For saving
 var dc: Dictionary
 
@@ -46,7 +44,6 @@ func _process(delta):
 		timer.start()
 
 func _saveData():
-	
 	dc["gm"] = {"balance":Globals.balance,"earnings":Globals.earnings}
 	dc["time"] = {"hour": Globals.hour, "minutes": Globals.min, "seconds": Globals.sec}
 	for x in upgradeList.get_children():
