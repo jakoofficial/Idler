@@ -19,6 +19,16 @@ func rebirth(reset:bool = false):
 		updateUI()
 	Globals.balance = 4.5
 	Globals.earnings = 0
+	Globals.bonusTimeLeft = 0
+	
+	if find_child("Power"):
+		for x in get_children():
+			if x.name == "Power":
+				queue_free()
+				break
+	
+	Globals.bonusEarns = 0
+	Globals.canSpawnPowerUp = true
 	var list = upgradeList.get_children()
 	for x in list:
 		x.reset()
@@ -31,6 +41,7 @@ func _ready():
 	updateUI()
 	timeSave *= 60
 	autoSaveTimer.start(timeSave)
+	Globals.canSpawnPowerUp = true
 
 func _process(delta):
 	if Input.is_action_just_pressed("ui_down"):
@@ -44,6 +55,13 @@ func _process(delta):
 		Globals.balance += snapped(Globals.earnings, 0.01) + Globals.bonusEarns
 		updateUI()
 		timer.start()
+	if Globals.canSpawnPowerUp and Globals.earnings > 0:
+		Globals.canSpawnPowerUp = false
+		#var t = randi_range(10, 7*60)
+		var t = randi_range(1, 11)
+		print("timer Start %s" % t)
+		await get_tree().create_timer(t).timeout
+		spawnPowerBonus()
 
 func spawnPowerBonus():
 	var s = DisplayServer.window_get_size()
@@ -51,13 +69,12 @@ func spawnPowerBonus():
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
 	var sPos = Vector2(round(rng.randf_range(32, (s.x-300))), -64)
-	
-	
-	
 	get_tree().current_scene.add_child(inst)
 	inst.position = sPos
+	inst.speed = rng.randi_range(1, 2)
+	inst.rotateSpeed = rng.randi_range(0.2, 1)
 	
-	print(sPos)
+	print("Power up")
 	
 	pass
 	

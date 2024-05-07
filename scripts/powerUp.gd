@@ -9,8 +9,10 @@ func _ready():
 	ds = DisplayServer.window_get_size()
 func _process(delta):
 	position.y += speed
+	rotation += rotateSpeed * delta
 	if position.y > (ds.y + 64):
 		print("dead")
+		Globals.canSpawnPowerUp = true
 		queue_free()
 
 func _on_input_event(viewport, event, shape_idx):
@@ -37,4 +39,5 @@ func _on_mouse_exited():
 
 func _on_timer_timeout():
 	Globals.bonusEarns = 0
+	Globals.canSpawnPowerUp = true
 	queue_free()

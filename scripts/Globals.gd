@@ -5,6 +5,7 @@ var earnings: float = 0.0
 var bonusEarns: float = 0.0
 var bonusTimeLeft: float = 0.0
 var baseExtra: float = 5.0
+var canSpawnPowerUp: bool = false
 
 var hour: int = 0
 var min: int = 0
