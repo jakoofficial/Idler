@@ -33,6 +33,8 @@ func _ready():
 	autoSaveTimer.start(timeSave)
 
 func _process(delta):
+	if Input.is_action_just_pressed("ui_down"):
+		spawnPowerBonus()
 	if Input.is_action_just_released("save"):
 		_saveData()
 	if Input.is_action_just_released("exit"):
@@ -44,7 +46,21 @@ func _process(delta):
 		timer.start()
 
 func spawnPowerBonus():
+	var s = DisplayServer.window_get_size()
+	var inst = powerup.instantiate()
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+	var sPos = Vector2(round(rng.randf_range(32, (s.x-300))), -64)
+	
+	
+	
+	get_tree().current_scene.add_child(inst)
+	inst.position = sPos
+	
+	print(sPos)
+	
 	pass
+	
 
 func _saveData():
 	dc["gm"] = {"balance":Globals.balance,"earnings":Globals.earnings}
