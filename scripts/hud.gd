@@ -61,9 +61,7 @@ func _on_save_game_pressed():
 	confirmation("Game Saved")
 #remove the current save file
 func _on_delete_save_pressed():
-	DirAccess.remove_absolute(get_tree().current_scene.savepath)
-	confirmation("File Deleted")
-	get_tree().current_scene.rebirth(true)
+	$DeleteConfirmBox.visible = true
 
 #Save and exit
 func _on_exitn_save_pressed():
@@ -71,11 +69,24 @@ func _on_exitn_save_pressed():
 	get_tree().quit()
 
 func _on_exit_game_pressed():
-	get_tree().quit()
+	$CloseNoSaveConfirmBox.visible = true
 
 func confirmation(msg):
 	confMsg.text = msg
 	confMsg.visible = true
 	await get_tree().create_timer(1.5).timeout
 	confMsg.visible = false
-	
+
+func _on_btn_cancel_pressed():
+	$DeleteConfirmBox.visible = false
+	$CloseNoSaveConfirmBox.visible = false
+
+func _on_btn_confirm_pressed():
+	DirAccess.remove_absolute(get_tree().current_scene.savepath)
+	confirmation("File Deleted")
+	$DeleteConfirmBox.visible = false
+	$SettingsMenu.visible = !$SettingsMenu.visible
+	get_tree().current_scene.rebirth(true)
+
+func _on_btn_confirm_no_save_pressed():
+	get_tree().quit()

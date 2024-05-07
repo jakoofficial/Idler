@@ -1,8 +1,27 @@
-[gd_scene load_steps=4 format=3 uid="uid://b1xl5tju2ah25"]
+[gd_scene load_steps=11 format=3 uid="uid://b1xl5tju2ah25"]
 
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_4enbw"]
 [ext_resource type="PackedScene" uid="uid://dxx4yd2hu7t1s" path="res://assets/item_button.tscn" id="2_y0meq"]
 [ext_resource type="Texture2D" uid="uid://bnig4tb6ldprv" path="res://assets/UI/Gear.svg" id="3_qsccl"]
+[ext_resource type="Theme" uid="uid://da5b2ecjq4yn0" path="res://Themes/MenuButtons.tres" id="4_eqclf"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_6xnmg"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gpb1t"]
+texture = SubResource("CanvasTexture_6xnmg")
+modulate_color = Color(0, 0, 0, 0.407843)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_u3phn"]
+
+[sub_resource type="MeshTexture" id="MeshTexture_j0d0f"]
+mesh = SubResource("PlaneMesh_u3phn")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qgr8o"]
+texture = SubResource("MeshTexture_j0d0f")
+modulate_color = Color(0.0117647, 0.0117647, 0.0117647, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_imyfj"]
+font_size = 24
 
 [node name="HUD" type="Control"]
 layout_mode = 3
@@ -147,13 +166,13 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Panel" type="Panel" parent="SettingsMenu"]
-self_modulate = Color(0.211765, 0.211765, 0.211765, 0.662745)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_gpb1t")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="SettingsMenu"]
 layout_mode = 1
@@ -195,6 +214,165 @@ text = "Exit and Save"
 layout_mode = 2
 text = "Exit game"
 
+[node name="DeleteConfirmBox" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="DeleteConfirmBox"]
+self_modulate = Color(1, 1, 1, 0.647059)
+top_level = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="DeleteConfirmBox/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -152.0
+offset_top = -60.0
+offset_right = 152.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_qgr8o")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DeleteConfirmBox/Panel/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VSplitContainer" type="VSplitContainer" parent="DeleteConfirmBox/Panel/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DeleteConfirmBox/Panel/Panel/VBoxContainer"]
+layout_mode = 2
+text = "Are you sure?"
+label_settings = SubResource("LabelSettings_imyfj")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VSplitContainer2" type="VSplitContainer" parent="DeleteConfirmBox/Panel/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="DeleteConfirmBox/Panel/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DeleteConfirmBox/Panel/Panel/VBoxContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="btnCancel" type="Button" parent="DeleteConfirmBox/Panel/Panel/VBoxContainer/CenterContainer/HBoxContainer"]
+custom_minimum_size = Vector2(125, 50)
+layout_mode = 2
+theme = ExtResource("4_eqclf")
+text = "Cancel"
+
+[node name="HSplitContainer" type="HSplitContainer" parent="DeleteConfirmBox/Panel/Panel/VBoxContainer/CenterContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="btnConfirm" type="Button" parent="DeleteConfirmBox/Panel/Panel/VBoxContainer/CenterContainer/HBoxContainer"]
+custom_minimum_size = Vector2(125, 50)
+layout_mode = 2
+theme = ExtResource("4_eqclf")
+text = "Confirm"
+
+[node name="CloseNoSaveConfirmBox" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="CloseNoSaveConfirmBox"]
+self_modulate = Color(1, 1, 1, 0.647059)
+top_level = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="CloseNoSaveConfirmBox/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -152.0
+offset_top = -60.0
+offset_right = 152.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_qgr8o")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CloseNoSaveConfirmBox/Panel/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VSplitContainer" type="VSplitContainer" parent="CloseNoSaveConfirmBox/Panel/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CloseNoSaveConfirmBox/Panel/Panel/VBoxContainer"]
+layout_mode = 2
+text = "Progress will be lost.
+Confirm?"
+label_settings = SubResource("LabelSettings_imyfj")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VSplitContainer2" type="VSplitContainer" parent="CloseNoSaveConfirmBox/Panel/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="CloseNoSaveConfirmBox/Panel/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CloseNoSaveConfirmBox/Panel/Panel/VBoxContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="btnCancel" type="Button" parent="CloseNoSaveConfirmBox/Panel/Panel/VBoxContainer/CenterContainer/HBoxContainer"]
+custom_minimum_size = Vector2(125, 50)
+layout_mode = 2
+theme = ExtResource("4_eqclf")
+text = "Cancel"
+
+[node name="HSplitContainer" type="HSplitContainer" parent="CloseNoSaveConfirmBox/Panel/Panel/VBoxContainer/CenterContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="btnConfirmNoSave" type="Button" parent="CloseNoSaveConfirmBox/Panel/Panel/VBoxContainer/CenterContainer/HBoxContainer"]
+custom_minimum_size = Vector2(125, 50)
+layout_mode = 2
+theme = ExtResource("4_eqclf")
+text = "Confirm"
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="SettingsMenu/VBoxContainer/VBoxContainer/Continue" to="." method="_on_continue_pressed"]
@@ -202,3 +380,7 @@ text = "Exit game"
 [connection signal="pressed" from="SettingsMenu/VBoxContainer/VBoxContainer/DeleteSave" to="." method="_on_delete_save_pressed"]
 [connection signal="pressed" from="SettingsMenu/VBoxContainer/HBoxContainer/ExitnSave" to="." method="_on_exitn_save_pressed"]
 [connection signal="pressed" from="SettingsMenu/VBoxContainer/HBoxContainer/ExitGame" to="." method="_on_exit_game_pressed"]
+[connection signal="pressed" from="DeleteConfirmBox/Panel/Panel/VBoxContainer/CenterContainer/HBoxContainer/btnCancel" to="." method="_on_btn_cancel_pressed"]
+[connection signal="pressed" from="DeleteConfirmBox/Panel/Panel/VBoxContainer/CenterContainer/HBoxContainer/btnConfirm" to="." method="_on_btn_confirm_pressed"]
+[connection signal="pressed" from="CloseNoSaveConfirmBox/Panel/Panel/VBoxContainer/CenterContainer/HBoxContainer/btnCancel" to="." method="_on_btn_cancel_pressed"]
+[connection signal="pressed" from="CloseNoSaveConfirmBox/Panel/Panel/VBoxContainer/CenterContainer/HBoxContainer/btnConfirmNoSave" to="." method="_on_btn_confirm_no_save_pressed"]

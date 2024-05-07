@@ -43,6 +43,9 @@ func _process(delta):
 		updateUI()
 		timer.start()
 
+func spawnPowerBonus():
+	pass
+
 func _saveData():
 	dc["gm"] = {"balance":Globals.balance,"earnings":Globals.earnings}
 	dc["time"] = {"hour": Globals.hour, "minutes": Globals.min, "seconds": Globals.sec}
