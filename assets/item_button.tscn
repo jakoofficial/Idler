@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dxx4yd2hu7t1s"]
+[gd_scene load_steps=4 format=3 uid="uid://dxx4yd2hu7t1s"]
 
 [ext_resource type="Script" path="res://scripts/ItemButton.gd" id="1_xmigk"]
 [ext_resource type="Script" path="res://scripts/MultiUpgrade.gd" id="2_n5v2l"]
+[ext_resource type="Script" path="res://addons/merovi.svgtexture2d/svg_sprite_2d.gd" id="3_jfh4x"]
 
 [node name="ItemButton" type="Button"]
 custom_minimum_size = Vector2(200, 50)
@@ -20,6 +21,13 @@ offset_right = -13.0
 offset_bottom = 46.0
 text = "+"
 script = ExtResource("2_n5v2l")
+
+[node name="ItemIcon" type="Sprite2D" parent="."]
+position = Vector2(24, 28)
+scale = Vector2(0.333333, 0.333333)
+script = ExtResource("3_jfh4x")
+Resolution = 3.0
+sprite_size = 0.4
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]
 [connection signal="pressed" from="MultiUpgrade" to="." method="multiUpgrade"]

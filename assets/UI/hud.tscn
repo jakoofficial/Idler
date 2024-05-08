@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://b1xl5tju2ah25"]
+[gd_scene load_steps=12 format=3 uid="uid://b1xl5tju2ah25"]
 
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_4enbw"]
 [ext_resource type="PackedScene" uid="uid://dxx4yd2hu7t1s" path="res://assets/item_button.tscn" id="2_y0meq"]
+[ext_resource type="Resource" uid="uid://eu7t63a2ltt2" path="res://assets/svgs/Icons/Seed.svgtex" id="3_7xpbw"]
 [ext_resource type="Texture2D" uid="uid://bnig4tb6ldprv" path="res://assets/UI/Gear.svg" id="3_qsccl"]
 [ext_resource type="Theme" uid="uid://da5b2ecjq4yn0" path="res://Themes/MenuButtons.tres" id="4_eqclf"]
 
@@ -64,6 +65,7 @@ layout_mode = 2
 itemNAME = "Seed"
 prodBASE = 0.5
 multiplierCost = 2547.0
+iconSVG = ExtResource("3_7xpbw")
 
 [node name="SproutBTN" parent="UpgradeList" groups=["KSave"] instance=ExtResource("2_y0meq")]
 layout_mode = 2

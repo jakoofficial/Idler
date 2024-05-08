@@ -11,6 +11,7 @@ var prodTOTAL: float = 1.0
 @export var rateGROWTH: float = 1.07
 @export var multiplierCost: float = 1.0
 @export var multiplier: float = 1.0
+@export var iconSVG: SVGTexture2D
 
 func reset():
 	costNEXT = costBASE
