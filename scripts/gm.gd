@@ -57,8 +57,8 @@ func _process(delta):
 		timer.start()
 	if Globals.canSpawnPowerUp and Globals.earnings > 0:
 		Globals.canSpawnPowerUp = false
-		#var t = randi_range(10, 7*60)
-		var t = randi_range(1, 11)
+		var t = randi_range(60, 7*60)
+		#var t = randi_range(1, 11)
 		print("timer Start %s" % t)
 		await get_tree().create_timer(t).timeout
 		spawnPowerBonus()
